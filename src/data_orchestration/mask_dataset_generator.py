@@ -3,9 +3,8 @@ Example script to convert raw mask images into the csv row based training/test d
 Containing polygon lists used for segmentation
 """
 
-from sklearn.model_selection import train_test_split
 import cv2
-import datetime
+from datetime import datetime
 import os, csv
 import numpy as np
 from PIL import Image
@@ -62,26 +61,26 @@ def mask2polygons(mask):
     return annotations
 
 
-def write_annotation_csv(img_name, annotations, csv_path):
+def write_annotation_csv(img_name, annotations, class_name, csv_path):
     """ Generate csv files used for mask-rcnn based model training """
     with open(csv_path, 'a', encoding='UTF8') as f:
         writer = csv.writer(f)
         if os.stat(csv_path).st_size == 0:   # Write header on newly created file
-            writer.writerow(['filename', 'xmin', 'ymin', 'xmax', 'ymax', 'segmentation', 'class'])
+            writer.writerow(['filename', 'xmin', 'ymin', 'xmax', 'ymax', 'polygon', 'class'])
 
         for annotation in annotations:
             bbox, polygon = annotation[0], annotation[-1]
             xmin, ymin, xmax, ymax = bbox[0], bbox[1], bbox[0]+bbox[2], bbox[1]+bbox[3]
-            writer.writerow([img_name, xmin, ymin, xmax, ymax, [polygon], 'pothole'])
+            writer.writerow([img_name, xmin, ymin, xmax, ymax, [polygon], class_name])
 
 
-def prepare_dataset(img_labels, out_file_path, out_visualization=None):
+def prepare_dataset(img_labels, class_name, out_file_path, out_visualization=None):
     print('Directory size ' + str(len(os.listdir(img_labels))))
 
     acc =0
     for f in os.listdir(img_labels):
         annotations = mask2polygons(mask=os.path.join(img_labels, f))
-        write_annotation_csv(img_name=f, annotations=annotations, csv_path=out_file_path)
+        write_annotation_csv(img_name=f, class_name=class_name, annotations=annotations, csv_path=out_file_path)
 
         if out_visualization:
             bboxes = [annotation[0] for annotation in annotations]
@@ -111,10 +110,12 @@ if __name__ == '__main__':
 
     # generate training dataset
     prepare_dataset(img_labels=img_labels_train,
+                    class_name=use_case,
                     out_file_path=out_file_train,
                     out_visualization=out_visualization)
 
     # generate test dataset
     prepare_dataset(img_labels=img_labels_test,
-                out_file_path=out_file_test,
-                out_visualization=out_visualization)
+                    class_name=use_case,
+                    out_file_path=out_file_test,
+                    out_visualization=out_visualization)
