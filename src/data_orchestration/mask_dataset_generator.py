@@ -66,7 +66,7 @@ def write_annotation_csv(img_name, annotations, class_name, csv_path):
     with open(csv_path, 'a', encoding='UTF8') as f:
         writer = csv.writer(f)
         if os.stat(csv_path).st_size == 0:   # Write header on newly created file
-            writer.writerow(['filename', 'xmin', 'ymin', 'xmax', 'ymax', 'polygon', 'class'])
+            writer.writerow(['filename', 'xmin', 'ymin', 'xmax', 'ymax', 'segmentation', 'class'])
 
         for annotation in annotations:
             bbox, polygon = annotation[0], annotation[-1]
