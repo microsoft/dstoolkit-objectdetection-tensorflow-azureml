@@ -7,11 +7,10 @@ pr:
     - '*'
 
 variables:
-- template: ../configuration/configuration-aml.variables.yml
 - template: ../configuration/configuration-infra-DEV.variables.yml
 
 pool:
-  vmImage: $(VM_VERSION)
+  vmImage: ubuntu-latest
 
 stages:
 
@@ -59,7 +58,7 @@ stages:
   - job: unit_test
     condition: succeeded()
     pool:
-      vmImage: $(VM_VERSION)
+      vmImage: ubuntu-latest
     container:
       image: tensorflowobjectdetection:test
       endpoint: conn-detection-acr-dev
