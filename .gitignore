@@ -119,6 +119,9 @@ configuration/*.json
 # vscode
 **/.vscode
 
+# github
+**/.github
+
 # pycharm
 **/.idea
 

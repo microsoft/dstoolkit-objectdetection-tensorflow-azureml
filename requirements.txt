@@ -14,3 +14,4 @@ jellyfish==0.8.2
 tensorflow==1.15
 matplotlib==3.3.4
 opencv-python-headless==4.5.3.56
+streamlit
