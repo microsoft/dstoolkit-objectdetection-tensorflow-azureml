@@ -115,6 +115,7 @@ configuration/*.json
 **/deploy_config.json
 **/pipeline_config.json
 **/plot_config.json
+**/demo_config.json
 
 # vscode
 **/.vscode
