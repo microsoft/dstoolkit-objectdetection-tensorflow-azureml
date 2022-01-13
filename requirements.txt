@@ -9,7 +9,7 @@ azure-storage-file==2.1.0
 azureml-sdk==1.35.0
 numpy==1.19.3
 pandas==1.1.5
-Pillow==8.4.0
+Pillow==9.0.0
 jellyfish==0.8.2
 tensorflow==1.15
 matplotlib==3.3.4
