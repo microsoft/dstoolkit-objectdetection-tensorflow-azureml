@@ -246,6 +246,7 @@ class TF2ODRun():
                    checkpoint_max_to_keep=7,
                    record_summaries=True,
                    num_steps_per_iteration=100):
+        # TODO(Fredrik) - Check train_loop function and benchmark on what has been changed in newer v.
 
         print("\n========== TRAINING STARTING ==========\n")
         train_steps = int(train_steps)
@@ -361,6 +362,7 @@ class TF2ODRun():
 
                     def train_step_fn(features, labels):
                         """Single train step."""
+                        # TODO(Fredrik) - Check impact of global step line 377
                         if record_summaries:
                             tf.compat.v2.summary.image(
                                 name='train_input_images',

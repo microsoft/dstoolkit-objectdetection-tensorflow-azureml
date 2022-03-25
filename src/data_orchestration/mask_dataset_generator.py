@@ -5,7 +5,8 @@ Containing polygon lists used for segmentation
 
 import cv2
 from datetime import datetime
-import os, csv
+import os
+import csv
 import numpy as np
 from PIL import Image
 import PIL.ImageDraw as ImageDraw
@@ -77,7 +78,7 @@ def write_annotation_csv(img_name, annotations, class_name, csv_path):
 def prepare_dataset(img_labels, class_name, out_file_path, out_visualization=None):
     print('Directory size ' + str(len(os.listdir(img_labels))))
 
-    acc =0
+    acc = 0
     for f in os.listdir(img_labels):
         annotations = mask2polygons(mask=os.path.join(img_labels, f))
         write_annotation_csv(img_name=f, class_name=class_name, annotations=annotations, csv_path=out_file_path)
@@ -97,7 +98,6 @@ def prepare_dataset(img_labels, class_name, out_file_path, out_visualization=Non
         print(f'Create new record for image {f}, at position {acc}')
 
 
-
 if __name__ == '__main__':
     use_case = 'usecase'
     train_name, test_name = name_files(use_case)
@@ -106,7 +106,7 @@ if __name__ == '__main__':
 
     img_labels_train = "path"  # directory containing training mask images
     img_labels_test = "path"  # directory containing test mask images
-    out_visualization = 'path' # if set, annotations are visualized for later labelling check
+    out_visualization = 'path'  # if set, annotations are visualized for later labelling check
 
     # generate training dataset
     prepare_dataset(img_labels=img_labels_train,
