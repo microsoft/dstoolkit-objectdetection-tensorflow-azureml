@@ -9,6 +9,7 @@
     "IMAGE_TYPE" : "",
     "TRAIN_CSV" : "",
     "TEST_CSV" : "",
+    "BATCH_SIZE": 1,
     "EVAL_CONF" : 0.5,
     "RUN_PARAMS": {
         "STEPS": 1000

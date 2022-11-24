@@ -43,6 +43,7 @@ def main():
     img_type = exp_config['IMAGE_TYPE']
     train_csv = exp_config['TRAIN_CSV']
     test_csv = exp_config['TEST_CSV']
+    batch_size = exp_config['BATCH_SIZE']
     base_model = (exp_config['MODEL_PARAMS']
                             ['BASE_MODEL'])
     steps = (exp_config['RUN_PARAMS']
@@ -87,6 +88,7 @@ def main():
             '--image_type', img_type,
             '--train_csv', train_csv,
             '--test_csv', test_csv,
+            '--batch_size', batch_size,
             '--base_model', base_model,
             '--steps', steps,
             '--fs_nms_iou', fs_nms_iou,
@@ -109,6 +111,7 @@ def main():
             '--image_type', img_type,
             '--train_csv', train_csv,
             '--test_csv', test_csv,
+            '--batch_size', batch_size,
             '--base_model', base_model,
             '--steps', steps,
             '--eval_conf', eval_conf]
