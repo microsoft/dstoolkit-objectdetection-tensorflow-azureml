@@ -1,6 +1,9 @@
 # Base Image
 FROM tensorflow/tensorflow:1.15.2-gpu-py3
 
+RUN rm /etc/apt/sources.list.d/cuda.list
+RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+
 RUN apt-get update && apt-get -q -y install git-core wget
 
 # Installing the Tensorflow Object Detection API
